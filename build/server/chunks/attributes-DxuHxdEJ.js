@@ -1,0 +1,6 @@
+function r(e){var t,f,n="";if("string"==typeof e||"number"==typeof e)n+=e;else if("object"==typeof e)if(Array.isArray(e)){var o=e.length;for(t=0;t<o;t++)e[t]&&(f=r(e[t]))&&(n&&(n+=" "),n+=f);}else for(f in e)e[f]&&(n&&(n+=" "),n+=f);return n}function clsx$1(){for(var e,t,f=0,n="",o=arguments.length;f<o;f++)(e=arguments[f])&&(t=r(e))&&(n&&(n+=" "),n+=t);return n}
+
+var t=Object.defineProperty,__name=(s,e)=>t(s,"name",{value:e,configurable:true});const e=/[&"<]/g,n=/[&<]/g;function escape_html(t,s){const l=String(t??""),a=s?e:n;a.lastIndex=0;let r="",c=0;for(;a.test(l);){const t=a.lastIndex-1,s=l[t];r+=l.substring(c,t)+("&"===s?"&amp;":'"'===s?"&quot;":"&lt;"),c=t+1;}return r+l.substring(c)}__name(escape_html,"escape_html");const l={translate:new Map([[true,"yes"],[false,"no"]])};function attr(t,s,e=false){if(null==s||!s&&e)return "";const n=t in l&&l[t].get(s)||s;return ` ${t}${e?"":`="${escape_html(n,true)}"`}`}function clsx(t){return "object"==typeof t?clsx$1(t):t??""}function to_class(t,s,e){var n=null==t?"":""+t;return ""===(n=n?n+" "+s:s)?null:n}function to_style(t,s){return null==t?null:String(t)}__name(attr,"attr"),__name(clsx,"clsx"),__name(to_class,"to_class"),__name(to_style,"to_style");
+
+export { attr as a, to_style as b, clsx as c, escape_html as e, to_class as t };
+//# sourceMappingURL=attributes-DxuHxdEJ.js.map
