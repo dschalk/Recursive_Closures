@@ -1430,12 +1430,17 @@ var arr = [A,B,C,D];
     };`
 </script>
 
+<!--*******************************************************  -->
+<!--*******************************************************  -->
+<!--*******************************************************  -->
+<!--*******************************************************  -->
+
 <svelte:window on:keypress={handleEvent} />
 
 <div style="margin-left: 8%; margin-right: 8%" id = "top">
   <h1 class="middle">Recursive Closures</h1>
 
- <p> This website explores some of the useful features of m-M(x) closures; i.e., closures created instantiated by statements "m = M(x)", where x can be any value, and the simplest definition of "M" is:
+ <p> This website explores some of the useful features of m-M(x) closures; i.e., closures created by statements "m = M(x)", where x can be any value, and the simplest definition of "M" is:
  
   <pre>{MCode}</pre>
  <p> A modified version of M can be found at <a href="./cube">Rubik's cube example </a>, where M holds an array of function names, making it convenient for players to reverse a series of moves by repeatedly pressing the "Q" key (see <a href="./cube#reverse">function reverse</a>. Another variant of M is demonstrated at <a href="./async5">Synchronous and Asynchronous Functions Handled</a> where the line "x = func(x)" in M (above) is replaced by "x = idP(x).then(v => func(v))", idP(x),and where idP(x) returns a promise holding x.</p>
