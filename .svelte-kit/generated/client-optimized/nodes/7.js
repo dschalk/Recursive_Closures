@@ -1,1 +1,1 @@
-export { default as component } from "../../../../src/routes/clone/+page.svelte";
+export { default as component } from "../../../../src/routes/async5/+page.svelte";
