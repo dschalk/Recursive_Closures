@@ -15,7 +15,6 @@
     });
 */
 
-
   import Cubeshot from "$lib/Cubeshot.png"
   import CubeshotR from "$lib/CubeshotR.png"
   import shot3 from "$lib/Screenshot3.png"
@@ -374,15 +373,15 @@ m(rd)(dF3x);   // 42 `;
 
   const DOMfront = `      <div class="face front">
         <div class="grid" >
-          <div> <button class={m(dF3x)[3][0]} on:click = {() => {m = m(Fz)}} /> </div> 
-          <div> <button class={m(dF3x)[3][1]} on:click = {() => {m = m(Cx)}} /> </div> 
-          <div> <button class={m(dF3x)[3][2]} on:click = {() => {m = m(F)}} /> </div>  
-          <div> <button class={m(dF3x)[3][3]} on:click = {() => {m = m(Cy)}} /> </div> 
-          <div> <button class={m(dF3x)[3][4]} on:click = {() => {m = m(Zro)}} /> </div>
-          <div><button class={m(dF3x)[3][5]} on:click = {() => {m = m(Cyr)}} /> </div> 
-          <div><button class={m(dF3x)[3][6]} on:click = {() => {m = m(Fz)}} /> </div> 
-          <div><button class={m(dF3x)[3][7]} on:click = {() => {m = m(Cxr)}} /> </div> 
-          <div><button class={m(dF3x)[3][8]} on:click = {() => {m = m(F)}} /> </div> 
+          <div> <button class={m(dF3x)[3][0]} onclick = {() => {m(Fz)}} /> </div> 
+          <div> <button class={m(dF3x)[3][1]} onclick = {() => {m(Cx)}} /> </div> 
+          <div> <button class={m(dF3x)[3][2]} onclick = {() => {m(F)}} /> </div>  
+          <div> <button class={m(dF3x)[3][3]} onclick = {() => {m(Cy)}} /> </div> 
+          <div> <button class={m(dF3x)[3][4]} onclick = {() => {m(Zro)}} /> </div>
+          <div><button class={m(dF3x)[3][5]} onclick = {() => {m(Cyr)}} /> </div> 
+          <div><button class={m(dF3x)[3][6]} onclick = {() => {m(Fz)}} /> </div> 
+          <div><button class={m(dF3x)[3][7]} onclick = {() => {m(Cxr)}} /> </div> 
+          <div><button class={m(dF3x)[3][8]} onclick = {() => {m(F)}} /> </div> 
         </div>
       </div>`;
 
@@ -521,43 +520,43 @@ console.log('m(dF3x) is', m(dF3x));`
 
   var domCube = `<div class="face front">
   <div class="grid">
-    <button style="background-color: {m(dF3x)[3][0]}" on:click={() => {m = m(Fz)}}/>
-    <button style="background-color: {m(dF3x)[3][1]}" on:click={() => {m = m(Cx)}}/>
-    <button style="background-color: {m(dF3x)[3][2]}" on:click={() => {m = m(F)}}/>
-    <button style="background-color: {m(dF3x)[3][3]}" on:click={() => {m = m(Cyr)}}/>
-    <button style="background-color: {m(dF3x)[3][4]}" on:click={() => {m = m(Zro)}}/>
-    <button style="background-color: {m(dF3x)[3][5]}" on:click={() => {m = m(Cy)}}/>
-    <button style="background-color: {m(dF3x)[3][6]}" on:click={() => {m = m(Fz)}}/>
-    <button style="background-color: {m(dF3x)[3][7]}" on:click={() => {m = m(Cxr)}}/>
-    <button style="background-color: {m(dF3x)[3][8]}" on:click={() => {m = m(F)}}/>
+    <button style="background-color: {m(dF3x)[3][0]}" onclick={() => {m(Fz)}}/>
+    <button style="background-color: {m(dF3x)[3][1]}" onclick={() => {m(Cx)}}/>
+    <button style="background-color: {m(dF3x)[3][2]}" onclick={() => {m(F)}}/>
+    <button style="background-color: {m(dF3x)[3][3]}" onclick={() => {m(Cyr)}}/>
+    <button style="background-color: {m(dF3x)[3][4]}" onclick={() => {m(Zro)}}/>
+    <button style="background-color: {m(dF3x)[3][5]}" onclick={() => {m(Cy)}}/>
+    <button style="background-color: {m(dF3x)[3][6]}" onclick={() => {m(Fz)}}/>
+    <button style="background-color: {m(dF3x)[3][7]}" onclick={() => {m(Cxr)}}/>
+    <button style="background-color: {m(dF3x)[3][8]}" onclick={() => {m(F)}}/>
   </div>
 </div>
 
 <div class="face right">
   <div class="grid">
-    <button style="background-color: {m(dF3x)[0][0]}" on:click={() => {m = m(Rz)}}/>
-    <button style="background-color: {m(dF3x)[0][1]}" on:click={() => {m = m(Cz)}}/>
-    <button style="background-color: {m(dF3x)[0][2]}" on:click={() => {m = m(R)}}/>
-    <button style="background-color: {m(dF3x)[0][3]}" on:click={() => {m = m(Cyr)}}/>
-    <button style="background-color: {m(dF3x)[0][4]}" on:click={() => {m = m(Xro)}}/>
-    <button style="background-color: {m(dF3x)[0][5]}" on:click={() => {m = m(Cy)}}/>
-    <button style="background-color: {m(dF3x)[0][6]}" on:click={() => {m = m(Rz)}}/>
-    <button style="background-color: {m(dF3x)[0][7]}" on:click={() => {m = m(Czr)}}/>
-    <button style="background-color: {m(dF3x)[0][8]}" on:click={() => {m = m(R)}}/>
+    <button style="background-color: {m(dF3x)[0][0]}" onclick={() => {m(Rz)}}/>
+    <button style="background-color: {m(dF3x)[0][1]}" onclick={() => {m(Cz)}}/>
+    <button style="background-color: {m(dF3x)[0][2]}" onclick={() => {m(R)}}/>
+    <button style="background-color: {m(dF3x)[0][3]}" onclick={() => {m(Cyr)}}/>
+    <button style="background-color: {m(dF3x)[0][4]}" onclick={() => {m(Xro)}}/>
+    <button style="background-color: {m(dF3x)[0][5]}" onclick={() => {m(Cy)}}/>
+    <button style="background-color: {m(dF3x)[0][6]}" onclick={() => {m(Rz)}}/>
+    <button style="background-color: {m(dF3x)[0][7]}" onclick={() => {m(Czr)}}/>
+    <button style="background-color: {m(dF3x)[0][8]}" onclick={() => {m(R)}}/>
   </div>
 </div>
 
 <div class="face top">
   <div class="grid">
-    <button style="background-color: {m(dF3x)[4][0]}" on:click={() => {m = m(Uz)}}/>
-    <button style="background-color: {m(dF3x)[4][1]}" on:click={() => {m = m(Cx)}}/>
-    <button style="background-color: {m(dF3x)[4][2]}" on:click={() => {m = m(U)}}/>
-    <button style="background-color: {m(dF3x)[4][3]}" on:click={() => {m = m(Cz)}}/>
-    <button style="background-color: {m(dF3x)[4][4]}" on:click={() => {m = m(Yro)}}/>
-    <button style="background-color: {m(dF3x)[4][5]}" on:click={() => {m = m(Czr)}}/>
-    <button style="background-color: {m(dF3x)[4][6]}" on:click={() => {m = m(Uz)}}/>
-    <button style="background-color: {m(dF3x)[4][7]}" on:click={() => {m = m(Cxr)}}/>
-    <button style="background-color: {m(dF3x)[4][8]}" on:click={() => {m = m(U)}}/>
+    <button style="background-color: {m(dF3x)[4][0]}" onclick={() => {m(Uz)}}/>
+    <button style="background-color: {m(dF3x)[4][1]}" onclick={() => {m(Cx)}}/>
+    <button style="background-color: {m(dF3x)[4][2]}" onclick={() => {m(U)}}/>
+    <button style="background-color: {m(dF3x)[4][3]}" onclick={() => {m(Cz)}}/>
+    <button style="background-color: {m(dF3x)[4][4]}" onclick={() => {m(Yro)}}/>
+    <button style="background-color: {m(dF3x)[4][5]}" onclick={() => {m(Czr)}}/>
+    <button style="background-color: {m(dF3x)[4][6]}" onclick={() => {m(Uz)}}/>
+    <button style="background-color: {m(dF3x)[4][7]}" onclick={() => {m(Cxr)}}/>
+    <button style="background-color: {m(dF3x)[4][8]}" onclick={() => {m(U)}}/>
   </div>        
 </div>`;
 
@@ -565,8 +564,8 @@ console.log('m(dF3x) is', m(dF3x));`
 
   var Rz = "clowns";
 
-  var example3 = `<button on:click={() => m = m(R)}>R</button>
-<div><button class={m(dF3x)[0][2]} on:click = {() => {m = m(R)}} /> </div> `;
+  var example3 = `<button onclick={() => m(R)}>R</button>
+<div><button class={m(dF3x)[0][2]} onclick = {() => {m(R)}} /> </div> `;
 
   var handleEventCode = `function handleEvent(e) { 
     console.log(e.keyCode);
@@ -601,7 +600,7 @@ console.log('m(dF3x) is', m(dF3x));`
     else if (e.keyCode === 73) getSaved();
     else if (e.keyCode === 111) save();
     // else if (e.keyCode === 116) rotate(); 
-    m = m;  // In Svelte, this updates the DOM
+    m;  // In Svelte, this updates the DOM
   }`;
 
 var Masync = `function M (x) {
@@ -718,36 +717,36 @@ function f66 (x) {F6 = x};
     async function anon () {
       f5 = "m = M(3)"; }
     async function anon2 () {
-      m = m(v => v**3)
+      m(v => v**3)
       await wait(500)
-      m = m(Cx)
+      m(Cx)
       await wait(500)
-      m = m(Cx)
+      m(Cx)
       await wait(500)
-      m = m(Cx)
+      m(Cx)
       
       f77("E")
       await wait(500)
-      m = m(Cy)
+      m(Cy)
       await wait(500)
-      m = m(Cy)
+      m(Cy)
       await wait(500)
-      m = m(Cy)
+      m(Cy)
       await wait(500)
-      m = m(Cy)     
+      m(Cy)     
       
       f77("S")
       await wait(500)
-      m = m(Cz)
+      m(Cz)
       await wait(500)
-      m = m(Cz)
+      m(Cz)
       await wait(500)
-      m = m(Cz)
+      m(Cz)
       await wait(500)
-      m = m(Cz)
+      m(Cz)
       for (let k = 0; k < 12; k+=1){
           await wait(300)
-          m = m(ob[m(dF3ar).pop()]);
+          m(ob[m(dF3ar).pop()]);
           console.log(m(dF3x));
           m(dF3ar).pop();
           f77(11 - k);
@@ -1039,23 +1038,23 @@ var stdCode = `    import { leftShift } from "mathjs";
 
 let topCenter = `    <button
         style="background-color: {m(dF3x)[4][4]}"
-        on:click={() => {
-            m = m(Yro);
+        onclick={() => {
+            m(Yro);
         }}
     />` 
 
 
 var square_0_2 = `                    <button
                         style="background-color: {m(dF3x)[0][2]}"
-                        on:click={() => {
-                            m = m(R);
+                        onclick={() => {
+                            m(R);
                         }}
                     /> `;
 
 var square_4_4 = `                    <button
                         style="background-color: {m(dF3x)[4][4]}"
-                        on:click={() => {
-                            m = m(Yro);
+                        onclick={() => {
+                            m(Yro);
                         }}
                     /> `;
 
@@ -1267,7 +1266,7 @@ console.log(Object.keys(newObj)); // Output: ['a'], 'b' is non-enumerable` ;
 
 
     const reverseCode = `function reverse () { 
-    m = m(ob[m(dF3ar).pop()]); // Pops a function name and runs its reverse.   
+    m(ob[m(dF3ar).pop()]); // Pops a function name and runs its reverse.   
     m(dF3ar).pop(); // Discard the inverse functions's name, that m just 
                     // pushed onto ar (inside of the m-M(x) closure). 
   }`;
