@@ -24,16 +24,6 @@
     "file": "chunks/false.js",
     "name": "false"
   },
-  "_function.js": {
-    "file": "chunks/function.js",
-    "name": "function",
-    "assets": [
-      "_app/immutable/assets/clickDemo.BiScJb0a.png",
-      "_app/immutable/assets/red.BUhi4tGI.png",
-      "_app/immutable/assets/green.DWfUay0S.png",
-      "_app/immutable/assets/function.C41nRzhB.png"
-    ]
-  },
   "_index.js": {
     "file": "chunks/index.js",
     "name": "index",
@@ -199,15 +189,7 @@
     "file": "entries/pages/Test/_page.svelte.js",
     "name": "entries/pages/Test/_page.svelte",
     "src": "src/routes/Test/+page.svelte",
-    "isEntry": true,
-    "imports": [
-      "_index2.js",
-      "_function.js",
-      "_attributes.js"
-    ],
-    "css": [
-      "_app/immutable/assets/_page.BD5PGj3R.css"
-    ]
+    "isEntry": true
   },
   "src/routes/async5/+page.svelte": {
     "file": "entries/pages/async5/_page.svelte.js",
@@ -235,11 +217,16 @@
     "isEntry": true,
     "imports": [
       "_index2.js",
-      "_function.js",
       "_attributes.js"
     ],
     "css": [
       "_app/immutable/assets/_page.BD5PGj3R.css"
+    ],
+    "assets": [
+      "_app/immutable/assets/clickDemo.BiScJb0a.png",
+      "_app/immutable/assets/red.BUhi4tGI.png",
+      "_app/immutable/assets/green.DWfUay0S.png",
+      "_app/immutable/assets/function.C41nRzhB.png"
     ]
   },
   "src/routes/digitalannealing/+page.svelte": {

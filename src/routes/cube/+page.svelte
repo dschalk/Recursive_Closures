@@ -29,30 +29,44 @@
     }
   
     var Amos;
+    
+  function M(stateRef, historyRef) {
+    return function go(func) {
+      if (func === dF3x) return stateRef;
+      if (func === dF3ar) return historyRef;  
+      Object.assign(stateRef, func(stateRef));
+      historyRef.push(func.name);
+      return go;
+    };
+  }
   
-    var dF3x = () => {};
-    var dF3ar = () => {};
-  
-    function M(x, ar =[]) {
-      return function go(func) {
-        if (func === dF3x) return x;
-        else if (func === dF3ar) return ar;
-        x = func(x);
-        ar.push(func.name);
-        console.log("func.name is", func.name);
-        return go;
-      };
-    }
-  
-    var m = M([ ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"], ["green", "green", "green", "green", "green", "green", "green", "green", "green"], ["red", "red", "red", "red", "red", "red", "red", "red", "red"], ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange"], ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"], ["white", "white", "white", "white", "white", "white", "white", "white", "white"] ]);
-  
+  // Define the getter functions
+  let dF3x = () => {};
+  let dF3ar = () => {};
+
+  // Reactive state for the cube
+  let cubeState = $state([
+    ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"],
+    ["green", "green", "green", "green", "green", "green", "green", "green", "green"],
+    ["red", "red", "red", "red", "red", "red", "red", "red", "red"],
+    ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange"],
+    ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"],
+    ["white", "white", "white", "white", "white", "white", "white", "white", "white"],
+  ]);
+
+  let moveHistory = $state([]);
+
+
+  // Create the reactive closure
+  const m = $derived(M(cubeState, moveHistory));
+
     var mCode = `var m = M([ ["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"], ["green", "green", "green", "green", "green", "green", "green", "green", "green"], ["red", "red", "red", "red", "red", "red", "red", "red", "red"], ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange"], ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"], ["white", "white", "white", "white", "white", "white", "white", "white", "white"] ]);`
   
       var cubeStart = [["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"], ["green", "green", "green", "green", "green", "green", "green", "green", "green"], ["red", "red", "red", "red", "red", "red", "red", "red", "red"], ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange"], ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"], ["white", "white", "white", "white", "white", "white", "white", "white", "white"]];
   
       function clone(ar) {
         JSON.parse(JSON.stringify(ar))
-      }                                                                                                                        var test7 = `function M(x, ar =[]) {
+      }                                                                                                      var test7 = `function M(x, ar =[]) {
       return function go(func) {
         if (func === dF3x) return x;
         else if (func === dF3ar) return ar;
@@ -64,7 +78,6 @@
   
     function Start () {
       index = 1;
-      m = M([["blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue", "blue"], ["green", "green", "green", "green", "green", "green", "green", "green", "green"], ["red", "red", "red", "red", "red", "red", "red", "red", "red"], ["orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange", "orange"], ["yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow", "yellow"], ["white", "white", "white", "white", "white", "white", "white", "white", "white"]]);
     }; 
   
     var startCode = `const Start = function Start () {
@@ -77,7 +90,7 @@
       ["white", "white", "white", "white", "white", "white", "white", "white", "white"]]);
     };`;
   
-    $: Sally = m(dF3ar).length;
+    const Sally = $derived(() => m(dF3ar).length);
   
     var newMcode = `  function M(x, ar = []) {
       return function go(func) {
@@ -412,36 +425,36 @@
   
     // var Zror = x => Zro(Zro(Zro(x)));
   
-    //  $: m = m(() => m(dF3x));
+    //  $: m(() => m(dF3x));
   
     var Xrotate = function Xrotate(ar) {
       m(Xro);
-      m = m;
+      
     };
   
     var Xback = function Xback(ar) {
       m(Xror);
-      m = m;
+      
     };
   
     var Yrotate = function Yrotate(ar) {
       m(Yro);
-      m = m;
+      
     };
   
     var Yback = function Yback(ar) {
       m(Yror);
-      m = m;
+      
     };
   
     var Zrotate = function Zrotate(ar) {
       m(Zro);
-      m = m;
+      
     };
   
     var Zback = function Zback(ar) {
       m(Zror);
-      m = m;
+      
     };
   
     var Cz = function Cz(ar) {
@@ -1729,112 +1742,112 @@
   
     var UfuncCode = `var Ufunc = () => {
       m(U);
-      m = m;  // This triggers the DOM update
+        // This triggers the DOM update
     };`;
   
     var corners = () => {
       m(Rz)(F)(Rz)(B)(B)(R)(Fz)(Rz)(B)(B)(R)(R);
-      m = m;
+      
     };
   
     var triclock = () => {
       m(Cx)(Cx)(Uz)(Cx)(U)(U)(Cx)(Cx)(Cx)(Uz)(Cx)(Cx);
-      m = m;
+      
     };
   
     var tricounterclock = () => {
       m(Cx)(Cx)(U)(Cx)(U)(U)(Cx)(Cx)(Cx)(U)(Cx)(Cx);
-      m = m;
+      
     };
   
     var edgesOpposite = () => {
       m(Cx)(Cx)(Uz)(Cx)(Cx)(U)(U)(Cx)(Cx)(Uz)(Cx)(Cx);
-      m = m;
+      
     };
   
     var oppH1 = () => {
       m(R)(U)(Rz)(U)(R)(Uz)(Rz)(U)(R)(U)(U)(Rz);
-      m = m;
+      
     };
   
     var oppH2 = () => {
       m(F)(R)(U)(Rz)(Uz)(R)(U)(Rz)(Uz)(R)(U)(Rz)(Uz)(Fz);
-      m = m;
+      
     };
   
     var oppH3 = () => {
       m(R)(U)(U)(Rz)(Uz)(R)(U)(Rz)(Uz)(R)(U)(Rz)(Uz);
-      m = m;
+      
     };
   
     var edgesAdjacent = () => {
       console.log("In edgesAdjacent");
       m(Cx)(Cx)(U)(Cx)(Cx)(U)(Cx)(U)(U)(Cx)(Cx)(U)(U)(Cx)(U)(U);
-      m = m;
+      
     };
   
     var doubleFish = () => {
       m(Rz)(F)(R)(Bz)(Rz)(Fz)(R)(B);
-      m = m;
+      
     };
   
     var sune = () => {
       m(R)(U)(Rz)(U)(R)(U)(U)(Rz);
-      m = m;
+      
     };
   
     var antisune = () => {
       m(R)(U)(U)(Rz)(Uz)(R)(Uz)(Rz);
-      m = m;
+      
     };
   
     var sexy = () => {
       m(R)(U)(Rz)(Uz);
-      m = m;
+      
     };
     var reverse_sexy = () => {
       m(U)(R)(Uz)(Rz);
-      m = m;
+      
     };
   
     var orient_corners = () => {
       m(U)(R)(Uz)(Lz)(U)(Rz)(Uz)(L);
-      m = m;
+      
     };
   
     var reverse_orient_corners = () => {
       m(Lz)(U)(R)(Uz)(L)(U)(Rz)(Uz);
-      m = m;
+      
     };
   
     var sledgehammer = () => {
       m(Rz)(F)(R)(Fz);
-      m = m;
+      
     };
   
     var niklas = () => {
       m(R)(Uz)(Lz)(U)(Rz)(Uz)(L);
-      m = m;
+      
     };
   
     var reverse_niklas = () => {
       m(Lz)(U)(R)(Uz)(L)(U)(Rz);
-      m = m;
+      
     };
   
     var Jb_Perm = () => {
       m(R)(U)(Rz)(Fz)(R)(U)(Rz)(Uz)(Rz)(F)(R)(R)(Uz)(Rz)(Uz);
-      m = m;
+      
     };
   
     var niklas = () => {
       m(R)(Uz)(Lz)(U)(Rz)(Uz)(L);
-      m = m;
+      
     };
   
     var niklas = () => {
       m(R)(Uz)(Lz)(U)(Rz)(Uz)(L);
-      m = m;
+      
     };
   
     var cu;
@@ -1952,12 +1965,11 @@
   
     console.log("moves.length is", moves.length);
   
-    function shu() {
+    async function shu() {
       index = 1;
       for (let n = 0; n < 40; n += 1) {
         m(moves[Math.floor(Math.random() * 40)]);
       }
-      m = m;
     }
   
     function freeze() {
@@ -1966,7 +1978,7 @@
   
     function getSaved() {
       m(() => m2(dF3x));
-      m = m;
+      
     }
   
     function handleEvent(e) {
@@ -2002,7 +2014,7 @@
       else if (e.keyCode === 73) getSaved();
       else if (e.keyCode === 111) m(Zro)(Zro)(Yro);
       // else if (e.keyCode === 116) rotate();
-      m = m;
+      
     }
     var handleEventCode = `function handleEvent(e) { 
       console.log(e.keyCode);
@@ -2037,7 +2049,7 @@
       else if (e.keyCode === 73) getSaved();
       else if (e.keyCode === 111) save();
       // else if (e.keyCode === 116) rotate(); 
-      m = m;  // In Svelte, this updates the DOM
+        // In Svelte, this updates the DOM
     }`;
   
     var var2 = `var cubeStart = [...[bb, gg, rr, oo, yy, ww]];`;
@@ -2065,43 +2077,43 @@
   
   var dom =  `<div class="face front">
     <div class="grid">
-      <button style="background-color: {m(dF3x)[3][0]}" on:click={() => {m = m(Fz)}}/>
-      <button style="background-color: {m(dF3x)[3][1]}" on:click={() => {m = m(Cx)}}/>
-       <button style="background-color: {m(dF3x)[3][2]}" on:click={() => {m = m(F)}}/>
-       <button style="background-color: {m(dF3x)[3][3]}" on:click={() => {m = m(Cyr)}}/>
-       <button style="background-color: {m(dF3x)[3][4]}" on:click={() => {m = m(Zro)}}/>
-       <button style="background-color: {m(dF3x)[3][5]}" on:click={() => {m = m(Cy)}}/>
-       <button style="background-color: {m(dF3x)[3][6]}" on:click={() => {m = m(Fz)}}/>
-       <button style="background-color: {m(dF3x)[3][7]}" on:click={() => {m = m(Cxr)}}/>
-       <button style="background-color: {m(dF3x)[3][8]}" on:click={() => {m = m(F)}}/>
+      <button style="background-color: {m(dF3x)[3][0]}" onclick={() => {m(Fz)}}/>
+      <button style="background-color: {m(dF3x)[3][1]}" onclick={() => {m(Cx)}}/>
+       <button style="background-color: {m(dF3x)[3][2]}" onclick={() => {m(F)}}/>
+       <button style="background-color: {m(dF3x)[3][3]}" onclick={() => {m(Cyr)}}/>
+       <button style="background-color: {m(dF3x)[3][4]}" onclick={() => {m(Zro)}}/>
+       <button style="background-color: {m(dF3x)[3][5]}" onclick={() => {m(Cy)}}/>
+       <button style="background-color: {m(dF3x)[3][6]}" onclick={() => {m(Fz)}}/>
+       <button style="background-color: {m(dF3x)[3][7]}" onclick={() => {m(Cxr)}}/>
+       <button style="background-color: {m(dF3x)[3][8]}" onclick={() => {m(F)}}/>
     </div>
   </div>
   
   <div class="face right">
     <div class="grid">
-      <button style="background-color: {m(dF3x)[0][0]}" on:click={() => {m = m(Rz)}}/>
-      <button style="background-color: {m(dF3x)[0][1]}" on:click={() => {m = m(Cz)}}/>
-      <button style="background-color: {m(dF3x)[0][2]}" on:click={() => {m = m(R)}}/>
-      <button style="background-color: {m(dF3x)[0][3]}" on:click={() => {m = m(Cyr)}}/>
-      <button style="background-color: {m(dF3x)[0][4]}" on:click={() => {m = m(Xro)}}/>
-      <button style="background-color: {m(dF3x)[0][5]}" on:click={() => {m = m(Cy)}}/>
-      <button style="background-color: {m(dF3x)[0][6]}" on:click={() => {m = m(Rz)}}/>
-      <button style="background-color: {m(dF3x)[0][7]}" on:click={() => {m = m(Czr)}}/>
-      <button style="background-color: {m(dF3x)[0][8]}" on:click={() => {m = m(R)}}/>
+      <button style="background-color: {m(dF3x)[0][0]}" onclick={() => {m(Rz)}}/>
+      <button style="background-color: {m(dF3x)[0][1]}" onclick={() => {m(Cz)}}/>
+      <button style="background-color: {m(dF3x)[0][2]}" onclick={() => {m(R)}}/>
+      <button style="background-color: {m(dF3x)[0][3]}" onclick={() => {m(Cyr)}}/>
+      <button style="background-color: {m(dF3x)[0][4]}" onclick={() => {m(Xro)}}/>
+      <button style="background-color: {m(dF3x)[0][5]}" onclick={() => {m(Cy)}}/>
+      <button style="background-color: {m(dF3x)[0][6]}" onclick={() => {m(Rz)}}/>
+      <button style="background-color: {m(dF3x)[0][7]}" onclick={() => {m(Czr)}}/>
+      <button style="background-color: {m(dF3x)[0][8]}" onclick={() => {m(R)}}/>
     </div>
   </div>
   
   <div class="face top">
     <div class="grid">
-      <button style="background-color: {m(dF3x)[4][0]}" on:click={() => {m = m(Uz)}}/>
-      <button style="background-color: {m(dF3x)[4][1]}" on:click={() => {m = m(Cx)}}/>
-      <button style="background-color: {m(dF3x)[4][2]}" on:click={() => {m = m(U)}}/>
-      <button style="background-color: {m(dF3x)[4][3]}" on:click={() => {m = m(Cz)}}/>
-      <button style="background-color: {m(dF3x)[4][4]}" on:click={() => {m = m(Yro)}}/>
-      <button style="background-color: {m(dF3x)[4][5]}" on:click={() => {m = m(Czr)}}/>
-      <button style="background-color: {m(dF3x)[4][6]}" on:click={() => {m = m(Uz)}}/>
-      <button style="background-color: {m(dF3x)[4][7]}" on:click={() => {m = m(Cxr)}}/>
-      <button style="background-color: {m(dF3x)[4][8]}" on:click={() => {m = m(U)}}/>
+      <button style="background-color: {m(dF3x)[4][0]}" onclick={() => {m(Uz)}}/>
+      <button style="background-color: {m(dF3x)[4][1]}" onclick={() => {m(Cx)}}/>
+      <button style="background-color: {m(dF3x)[4][2]}" onclick={() => {m(U)}}/>
+      <button style="background-color: {m(dF3x)[4][3]}" onclick={() => {m(Cz)}}/>
+      <button style="background-color: {m(dF3x)[4][4]}" onclick={() => {m(Yro)}}/>
+      <button style="background-color: {m(dF3x)[4][5]}" onclick={() => {m(Czr)}}/>
+      <button style="background-color: {m(dF3x)[4][6]}" onclick={() => {m(Uz)}}/>
+      <button style="background-color: {m(dF3x)[4][7]}" onclick={() => {m(Cxr)}}/>
+      <button style="background-color: {m(dF3x)[4][8]}" onclick={() => {m(U)}}/>
     </div>        
   </div>`        
   
@@ -2132,15 +2144,15 @@
   
     var orangeSide = `    <div class="face front">
           <div class="grid" >
-            <div> <button class={m(dF3x)[3][0]} on:click = {() => {m = m(Fz)}} /> </div> 
-            <div> <button class={m(dF3x)[3][1]} on:click = {() => {m = m(Cx)}} /> </div> 
-            <div> <button class={m(dF3x)[3][2]} on:click = {() => {m = m(F)}} /> </div>  
-            <div> <button class={m(dF3x)[3][3]} on:click = {() => {m = m(Cy)}} /> </div> 
-            <div> <button class={m(dF3x)[3][4]} on:click = {() => {m = m(Zro)}} /> </div>
-            <div><button class={m(dF3x)[3][5]} on:click = {() => {m = m(Cyr)}} /> </div> 
-            <div><button class={m(dF3x)[3][6]} on:click = {() => {m = m(Fz)}} /> </div> 
-            <div><button class={m(dF3x)[3][7]} on:click = {() => {m = m(Cxr)}} /> </div> 
-            <div><button class={m(dF3x)[3][8]} on:click = {() => {m = m(F)}} /> </div> 
+            <div> <button class={m(dF3x)[3][0]} onclick = {() => {m(Fz)}} /> </div> 
+            <div> <button class={m(dF3x)[3][1]} onclick = {() => {m(Cx)}} /> </div> 
+            <div> <button class={m(dF3x)[3][2]} onclick = {() => {m(F)}} /> </div>  
+            <div> <button class={m(dF3x)[3][3]} onclick = {() => {m(Cy)}} /> </div> 
+            <div> <button class={m(dF3x)[3][4]} onclick = {() => {m(Zro)}} /> </div>
+            <div><button class={m(dF3x)[3][5]} onclick = {() => {m(Cyr)}} /> </div> 
+            <div><button class={m(dF3x)[3][6]} onclick = {() => {m(Fz)}} /> </div> 
+            <div><button class={m(dF3x)[3][7]} onclick = {() => {m(Cxr)}} /> </div> 
+            <div><button class={m(dF3x)[3][8]} onclick = {() => {m(F)}} /> </div> 
           </div>
         </div>`;
   
@@ -2153,9 +2165,9 @@
       var dF3x = () => {}; `; // Triggers return of x;
   
     var demoButtons = `<div >
-            <button style="background-color:{m(dF3x)[3][0]}; color: black; font-size:30px"   on:click = {() => {m = m(F)}}>m = m(F) </button>  
-            <button style="background-color:{m(dF3x)[3][1]}; color: black; font-size:30px"   on:click = {() => {m = m(Cx)}}>m = m(Cx) </button>  
-            <button style="background-color:{m(dF3x)[3][2]}; color: black; font-size:30px"   on:click = {() => {m = m(L)}}>m = m(L) </button>  
+            <button style="background-color:{m(dF3x)[3][0]}; color: black; font-size:30px"   onclick = {() => {m(F)}}>m(F) </button>  
+            <button style="background-color:{m(dF3x)[3][1]}; color: black; font-size:30px"   onclick = {() => {m(Cx)}}>m(Cx) </button>  
+            <button style="background-color:{m(dF3x)[3][2]}; color: black; font-size:30px"   onclick = {() => {m(L)}}>m(L) </button>  
   
       </div>`;
   
@@ -2244,11 +2256,11 @@
     } `;
   
   var general = `    <div> 
-          <button class={m(dF3x)[a][b]} on:click={() => {m = m(func)}}/>
+          <button class={m(dF3x)[a][b]} onclick={() => {m(func)}}/>
       </div> `
   
   var precise = `    <div> 
-          <button class={m(dF3x)[3][0]} on:click={() => {m = m(Fz)}}/>
+          <button class={m(dF3x)[3][0]} onclick={() => {m(Fz)}}/>
       </div> `
   
   var orangeCode =`.orange {
@@ -2280,19 +2292,25 @@
       // R.name = 'R'; L.name = 'L'; U.name = 'U'; D.name = 'D'; F.name = 'F'; B.name = 'B'; Cx.name = 'Cx'; Cy.name = 'Cy'; Cz.name = 'Cz'; Xro.name = 'Xro'; Yro.name = 'Yro'; Zro.name = 'Zro';
   
     var foo;
-  
-    function reverse () { 
-      m = m(ob[m(dF3ar).pop()]); 
+
+    function wait() {
+      return new Promise(r => setTimeout(r, 1000));
+    }
+
+    async function reverse () {
+      wait();
+      m(ob[m(dF3ar).pop()]); 
       m(dF3ar).pop();
+      return;
   };
   
     const reverseCode = `function reverse () { 
-      m = m(ob[m(dF3ar).pop()]); // Pops the key and runs m on value.   
+      m(ob[m(dF3ar).pop()]); // Pops the key and runs m on value.   
       m(dF3ar).pop(); // Discard the function that m just pushed onto ar.
     }` 
   
   var buttonCode = `<button style="background-color: {m(dF3x)[3][3]}" 
-      on:click={() => {m = m(Cyr)}} />`
+      onclick={() => {m(Cyr)}} />`
   
     // ***********************************************************
     // ***********************************************************
@@ -2309,31 +2327,31 @@
   <pre>{reverseCode}</pre>
       <p> The version of the m-M(x) closure used on this page encapsulates an array of six nine-member arrays of the strings "blue", "green", "red", "orange", "yellow", and "white." Users have at their disposal 12 basic functions (top row below) and their inverses (bottom row).</p> 
   
-          <button on:click={() => (m = m(U))}>U</button>
-          <button on:click={() => (m = m(D))}>D</button>
-          <button on:click={() => (m = m(R))}>R</button>
-          <button on:click={() => (m = m(L))}>L</button>
-          <button on:click={() => (m = m(F))}>F</button>
-          <button on:click={() => (m = m(B))}>B</button>
-          <button on:click={() => (m = m(Cx))}>M</button>
-          <button on:click={() => (m = m(Cy))}>E</button>
-          <button on:click={() => (m = m(Cz))}>S</button>
-          <button on:click={() => (m = m(Xro))}>X</button>
-          <button on:click={() => (m = m(Yro))}>Y</button>
-          <button on:click={() => (m = m(Zro))}>Z</button>
+          <button onclick={() => (m(U))}>U</button>
+          <button onclick={() => (m(D))}>D</button>
+          <button onclick={() => (m(R))}>R</button>
+          <button onclick={() => (m(L))}>L</button>
+          <button onclick={() => (m(F))}>F</button>
+          <button onclick={() => (m(B))}>B</button>
+          <button onclick={() => (m(Cx))}>M</button>
+          <button onclick={() => (m(Cy))}>E</button>
+          <button onclick={() => (m(Cz))}>S</button>
+          <button onclick={() => (m(Xro))}>X</button>
+          <button onclick={() => (m(Yro))}>Y</button>
+          <button onclick={() => (m(Zro))}>Z</button>
           <br />
-          <button on:click={() => (m = m(Uz))}>U'</button>
-          <button on:click={() => (m = m(Dz))}>D'</button>
-          <button on:click={() => (m = m(Rz))}>R'</button>
-          <button on:click={() => (m = m(Lz))}>L'</button>
-          <button on:click={() => (m = m(Fz))}>F'</button>
-          <button on:click={() => (m = m(Bz))}>B'</button>
-          <button on:click={() => (m = m(Cxr))}>M'</button>
-          <button on:click={() => (m = m(Cyr))}>E'</button>
-          <button on:click={() => (m = m(Czr))}>S'</button>
-          <button on:click={() => (m = m(Xror))}>X'</button>
-          <button on:click={() => (m = m(Yror))}>Y'</button>
-          <button on:click={() => (m = m(Zror))}>Z'</button>
+          <button onclick={() => (m(Uz))}>U'</button>
+          <button onclick={() => (m(Dz))}>D'</button>
+          <button onclick={() => (m(Rz))}>R'</button>
+          <button onclick={() => (m(Lz))}>L'</button>
+          <button onclick={() => (m(Fz))}>F'</button>
+          <button onclick={() => (m(Bz))}>B'</button>
+          <button onclick={() => (m(Cxr))}>M'</button>
+          <button onclick={() => (m(Cyr))}>E'</button>
+          <button onclick={() => (m(Czr))}>S'</button>
+          <button onclick={() => (m(Xror))}>X'</button>
+          <button onclick={() => (m(Yror))}>Y'</button>
+          <button onclick={() => (m(Zror))}>Z'</button>
   
           <br />
       <p> Pressing "U", "D", "R", "L", "F", or "B" keys, or clicking their corresponding buttons (above), rearranges some of the background colors of the 9 buttons that constitute each face of the virtual cube, simulating the result of turning the top, bottom, right, left, front, and back faces, respectively, of the virtual cube 90%. "M", "E", and "S" turn the middle sections 90 degrees. X", "Y", and "Z" turn the whole cube clockwise 90 degrees around the traditional x, y, and z axes. The single quote marks signify inverses, which can be run on the keyboard by simultaneously holding down the Shift key. </p>
@@ -2398,40 +2416,40 @@
   </pre>
   <p> x[3]'s background colors went from orange to blue to red. The cube seems to have rotated, but all of the divs and buttons remained stationary. Rearranging strings in the m-M(x) closure by pressing "Y", thereby rearranging the background colors of some of the simulated Rubik's cube buttons, created the illusion.  </p>
   
-          <button on:click={reverse}>Reverse</button>
+          <button onclick={reverse}>Reverse</button>
           <span style="font-size:25px">
               &nbsp;&nbsp;&nbsp;&nbsp; Move list length:
           </span> <span style="font-weight:bold; font-size:30px">{Sally}</span>
           <br />
-          <button on:click={() => (m = m(Xro))}>X</button>
-          <button on:click={() => (m = m(Yro))}>Y</button>
-          <button on:click={() => (m = m(Zro))}>Z</button>
+          <button onclick={() => (m(Xro))}>X</button>
+          <button onclick={() => (m(Yro))}>Y</button>
+          <button onclick={() => (m(Zro))}>Z</button>
           <br />
-          <button on:click={() => (m = m(Xror))}>X'</button>
-          <button on:click={() => (m = m(Yror))}>Y'</button>
-          <button on:click={() => (m = m(Zror))}>Z'</button>
+          <button onclick={() => (m(Xror))}>X'</button>
+          <button onclick={() => (m(Yror))}>Y'</button>
+          <button onclick={() => (m(Zror))}>Z'</button>
   
           <br />
-          <button on:click={() => (m = m(U))}>U</button>
-          <button on:click={() => (m = m(D))}>D</button>
-          <button on:click={() => (m = m(R))}>R</button>
-          <button on:click={() => (m = m(L))}>L</button>
-          <button on:click={() => (m = m(F))}>F</button>
-          <button on:click={() => (m = m(B))}>B</button>
-          <button on:click={() => (m = m(Cx))}>M</button>
-          <button on:click={() => (m = m(Cy))}>E</button>
-          <button on:click={() => (m = m(Cz))}>S</button>
+          <button onclick={() => (m(U))}>U</button>
+          <button onclick={() => (m(D))}>D</button>
+          <button onclick={() => (m(R))}>R</button>
+          <button onclick={() => (m(L))}>L</button>
+          <button onclick={() => (m(F))}>F</button>
+          <button onclick={() => (m(B))}>B</button>
+          <button onclick={() => (m(Cx))}>M</button>
+          <button onclick={() => (m(Cy))}>E</button>
+          <button onclick={() => (m(Cz))}>S</button>
           <br />
           
-          <button on:click={() => (m = m(Uz))}>U'</button>
-          <button on:click={() => (m = m(Dz))}>D'</button>
-          <button on:click={() => (m = m(Rz))}>R'</button>
-          <button on:click={() => (m = m(Lz))}>L'</button>
-          <button on:click={() => (m = m(Fz))}>F'</button>
-          <button on:click={() => (m = m(Bz))}>B'</button>
-          <button on:click={() => (m = m(Cxr))}>M'</button>
-          <button on:click={() => (m = m(Cyr))}>E'</button>
-          <button on:click={() => (m = m(Czr))}>S'</button>
+          <button onclick={() => (m(Uz))}>U'</button>
+          <button onclick={() => (m(Dz))}>D'</button>
+          <button onclick={() => (m(Rz))}>R'</button>
+          <button onclick={() => (m(Lz))}>L'</button>
+          <button onclick={() => (m(Fz))}>F'</button>
+          <button onclick={() => (m(Bz))}>B'</button>
+          <button onclick={() => (m(Cxr))}>M'</button>
+          <button onclick={() => (m(Cyr))}>E'</button>
+          <button onclick={() => (m(Czr))}>S'</button>
           <div style="margin-left: 1px">
               <p>
                   Pressing the u, d, r, l, f, b, m, e, s, x, y, and z keys has the
@@ -2456,124 +2474,126 @@
   
               <h2 style="text-align: center;">Some Algorithm Shortcuts</h2>
               <p></p>
-              <button on:click={corners}
+              <button onclick={corners}
                   >PLL Corners: R' F R' B2 R F' R' B2 R2</button
               >
               <br />
-              <button on:click={triclock}
+              <button onclick={triclock}
                   >Triangle Clockwise: M2 U' M U2 M' U' M2</button
               >
               <br />
-              <button on:click={tricounterclock}
+              <button onclick={tricounterclock}
                   >Triangle CounterClockwise: M2 U M U2 M' U M2</button
               >
               <br />
-              <button on:click={edgesOpposite}
+              <button onclick={edgesOpposite}
                   >Edges Opposite: M M Uz M M U U M M Uz M M</button
               >
               <br />
-              <button on:click={edgesAdjacent}
+              <button onclick={edgesAdjacent}
                   >Edges Adjacent: M M U M M U M U U M M U U M U U</button
               >
               <br />
-              <button on:click={doubleFish}
+              <button onclick={doubleFish}
                   >doubleFish R' F R B' R' F' R B
               </button>
               <br />
-              <button on:click={sune}>Sune: R U R' U R U2 R'</button>
+              <button onclick={sune}>Sune: R U R' U R U2 R'</button>
               <br />
-              <button on:click={antisune}>Antisune: R U2 R' U' R U' R' </button>
+              <button onclick={antisune}>Antisune: R U2 R' U' R U' R' </button>
               <br />
-              <button on:click={sexy}>Sexy: R U R' U'</button>
+              <button onclick={sexy}>Sexy: R U R' U'</button>
               <br />
-              <button on:click={reverse_sexy}>Reverse Sexy: U R U' R'</button>
+              <button onclick={reverse_sexy}>Reverse Sexy: U R U' R'</button>
               <br />
-              <button on:click={orient_corners}
+              <button onclick={orient_corners}
                   >Revolve: U R U' L' U R' U' L</button
               >
               <br />
-              <button on:click={reverse_orient_corners}
+              <button onclick={reverse_orient_corners}
                   >Reverse Revolve: L' U R U' L U R' U'</button
               >
               <br />
-              <button on:click={sledgehammer}>Sledgehammer: R' F R F' </button>
+              <button onclick={sledgehammer}>Sledgehammer: R' F R F' </button>
               <br />
   
-              <button on:click={oppH1}>oppH1: R U R' U R U' R' U R U U R'</button>
+              <button onclick={oppH1}>oppH1: R U R' U R U' R' U R U U R'</button>
               <br />
-              <button on:click={oppH3}
+              <button onclick={oppH3}
                   >oppH3: F R U R' U' R U R' U' R U R' U' F'</button
               >
               <br />
-              <button on:click={niklas}>Niklas: R U' L' U R' U' L</button>
+              <button onclick={niklas}>Niklas: R U' L' U R' U' L</button>
               <br />
-              <button on:click={reverse_niklas}
+              <button onclick={reverse_niklas}
                   >Reverse Niklas: L' U R U' L U R'</button
               >
               <p>
-                  Press the "v" key or click <button on:click={Start}
+                  Press the "v" key or click <button onclick={Start}
                       >Start</button>
                     Then click
-                  <button on:click={Xrotate}>X rotate</button>,
-                  <button on:click={Yrotate}>Y rotate</button>, and
-                  <button on:click={Zrotate}>Z rotate</button>
+                  <button onclick={Xrotate}>X rotate</button>,
+                  <button onclick={Yrotate}>Y rotate</button>, and
+                  <button onclick={Zrotate}>Z rotate</button>
                   buttons to see the main cube from various angles.
               </p>
               <br><br>
           </div>
       </div>
   </section>
-  <div id="steady">
+
+    <div id="steady">
       <div class="container">
           <div class={cu}>
               <div class="face front">
                   <div class="grid">
-                      <button style="background-color: {m(dF3x)[3][0]}" on:click={() => {m = m(Fz)}}/>
-                      <button style="background-color: {m(dF3x)[3][1]}" on:click={() => {m = m(Cx)}}/>
-                      <button style="background-color: {m(dF3x)[3][2]}" on:click={() => {m = m(F)}}/>
-                      <button style="background-color: {m(dF3x)[3][3]}" on:click={() => {m = m(Cyr)}}/>
-                      <button style="background-color: {m(dF3x)[3][4]}" on:click={() => {m = m(Zro)}}/>
-                      <button style="background-color: {m(dF3x)[3][5]}" on:click={() => {m = m(Cy)}}/>
-                      <button style="background-color: {m(dF3x)[3][6]}" on:click={() => {m = m(Fz)}}/>
-                      <button style="background-color: {m(dF3x)[3][7]}" on:click={() => {m = m(Cxr)}}/>
-                      <button style="background-color: {m(dF3x)[3][8]}" on:click={() => {m = m(F)}}/>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][0]}" onclick={() => {m(Fz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][1]}" onclick={() => {m(Cx)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][2]}" onclick={() => {m(F)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][3]}" onclick={() => {m(Cyr)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][4]}" onclick={() => {m(Zro)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][5]}" onclick={() => {m(Cy)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][6]}" onclick={() => {m(Fz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][7]}" onclick={() => {m(Cxr)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[3][8]}" onclick={() => {m(F)}}></button>
                   </div>
               </div>
   
               <div class="face right">
                   <div class="grid">
-                      <button style="background-color: {m(dF3x)[0][0]}" on:click={() => {m = m(Rz)}}/>
-                      <button style="background-color: {m(dF3x)[0][1]}" on:click={() => {m = m(Cz)}}/>
-                      <button style="background-color: {m(dF3x)[0][2]}" on:click={() => {m = m(R)}}/>
-                      <button style="background-color: {m(dF3x)[0][3]}" on:click={() => {m = m(Cyr)}}/>
-                      <button style="background-color: {m(dF3x)[0][4]}" on:click={() => {m = m(Xro)}}/>
-                      <button style="background-color: {m(dF3x)[0][5]}" on:click={() => {m = m(Cy)}}/>
-                      <button style="background-color: {m(dF3x)[0][6]}" on:click={() => {m = m(Rz)}}/>
-                      <button style="background-color: {m(dF3x)[0][7]}" on:click={() => {m = m(Czr)}}/>
-                      <button style="background-color: {m(dF3x)[0][8]}" on:click={() => {m = m(R)}}/>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][0]}" onclick={() => {m(Rz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][1]}" onclick={() => {m(Cz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][2]}" onclick={() => {m(R)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][3]}" onclick={() => {m(Cyr)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][4]}" onclick={() => {m(Xro)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][5]}" onclick={() => {m(Cy)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][6]}" onclick={() => {m(Rz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][7]}" onclick={() => {m(Czr)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[0][8]}" onclick={() => {m(R)}}></button>
                   </div>
               </div>
               <div class="face top">
                   <div class="grid">
-                      <button style="background-color: {m(dF3x)[4][0]}" on:click={() => {m = m(Uz)}}/>
-                      <button style="background-color: {m(dF3x)[4][1]}" on:click={() => {m = m(Cx)}}/>
-                      <button style="background-color: {m(dF3x)[4][2]}" on:click={() => {m = m(U)}}/>
-                      <button style="background-color: {m(dF3x)[4][3]}" on:click={() => {m = m(Cz)}}/>
-                      <button style="background-color: {m(dF3x)[4][4]}" on:click={() => {m = m(Yro)}}/>
-                      <button style="background-color: {m(dF3x)[4][5]}" on:click={() => {m = m(Czr)}}/>
-                      <button style="background-color: {m(dF3x)[4][6]}" on:click={() => {m = m(Uz)}}/>
-                      <button style="background-color: {m(dF3x)[4][7]}" on:click={() => {m = m(Cxr)}}/>
-                      <button style="background-color: {m(dF3x)[4][8]}" on:click={() => {m = m(U)}}/>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][0]}" onclick={() => {m(Uz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][1]}" onclick={() => {m(Cx)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][2]}" onclick={() => {m(U)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][3]}" onclick={() => {m(Cz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][4]}" onclick={() => {m(Yro)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][5]}" onclick={() => {m(Czr)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][6]}" onclick={() => {m(Uz)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][7]}" onclick={() => {m(Cxr)}}></button>
+                      <button  aria-label="move" style="background-color: {m(dF3x)[4][8]}" onclick={() => {m(U)}}></button>
                   </div>        
               </div>        
                     </div>
   
                     <br><br><br><br>
-          <button style="font-size: 22px; height:90px " on:click={() => m = m(Zro)(Zro)(Yro)}>Other View<br> Click or Press O</button>
+
+          <button style="font-size: 22px; height:90px " onclick={() => m(Zro)(Zro)(Yro)}>Other View<br> Click or Press O</button>
           <br><br>
-          <button style = 'font-size: 19px; height:30px;' on:click={shu}>Scramble W </button>
+          <button style = 'font-size: 19px; height:30px;' onclick={shu}>Scramble W </button>
           <br><br>
-          <button style = 'font-size: 19px; height:30px;'on:click={Start}>Start V</button>
+          <button style = 'font-size: 19px; height:30px;'onclick={Start}>Start V</button>
   
       </div>
         </div>
@@ -2588,21 +2608,21 @@
                   style="background-color:{m(
                       dF3x,
                   )[3][0]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][0] = {m(dF3x)[3][0]}
               </button>
               <button
                   style="background-color:{m(
                       dF3x,
                   )[3][1]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][1] = {m(dF3x)[3][1]}
               </button>
               <button
                   style="background-color:{m(
                       dF3x,
                   )[3][2]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][2] = {m(dF3x)[3][2]}
               </button>
               <br /><br />
@@ -2610,21 +2630,21 @@
                   style="background-color:{m(
                       dF3x,
                   )[3][3]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][3] = {m(dF3x)[3][3]}
               </button>
               <button
                   style="background-color:{m(
                       dF3x,
                   )[3][4]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][4] = {m(dF3x)[3][4]}
               </button>
               <button
                   style="background-color:{m(
                       dF3x,
                   )[3][5]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][5] = {m(dF3x)[3][5]}
               </button>
               <br /><br />
@@ -2632,21 +2652,21 @@
                   style="background-color:{m(
                       dF3x,
                   )[3][6]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][6] = {m(dF3x)[3][6]}
               </button>
               <button
                   style="background-color:{m(
                       dF3x,
                   )[3][7]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][7] = {m(dF3x)[3][7]}
               </button>
               <button
                   style="background-color:{m(
                       dF3x,
                   )[3][8]}; color: black; font-size:30px"
-                  on:click={() => {}}
+                  onclick={() => {}}
                   >m(dF3x)[3][8] = {m(dF3x)[3][2]}
               </button>
           </div>
@@ -2717,7 +2737,7 @@
   
           <h2>The elapsed time is {elapsedTime} milliseconds.</h2>
   
-          <button on:click={et2}>10,000 Scrambles</button>
+          <button onclick={et2}>10,000 Scrambles</button>
           <br />
           <span style="font-size:25px">
               &nbsp;&nbsp;&nbsp;&nbsp; Move list length:
@@ -2729,8 +2749,8 @@
       </div>
       <div></div>
   </section>
-  <button on:click = {console.log(m(dF3x))}>log x</button>
-  <button on:click = {console.log((m(dF3ar)))}>log arcd</button>
+  <button onclick = {console.log(m(dF3x))}>log x</button>
+  <button onclick = {console.log((m(dF3ar)))}>log arcd</button>
   
   <slot />
   

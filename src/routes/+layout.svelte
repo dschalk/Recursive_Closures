@@ -18,8 +18,6 @@
         
         <a href="./cube">Rubik's Cube</a>
 
-        <a href="./Test">Test</a>
-
         <a href="./async5">Async</a>
         
         <a href="./digitalannealing">2-opt</a>

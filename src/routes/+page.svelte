@@ -64,7 +64,15 @@
 
   var log = console.log;
 
-  var test_0 = `var m = M('peaches');
+var altM = `      function M(x) {
+          return function go(func) {
+              if (func === dF3x) return x;
+              Object.assign(x, func(x));
+              return go;
+          };
+      }`
+
+var test_0 = `var m = M('peaches');
 log('m(ret) is', m(ret)); // m(ret) is peaches
 
 m(x => x + ' and pears')
@@ -1440,13 +1448,15 @@ var arr = [A,B,C,D];
 <div style="margin-left: 8%; margin-right: 8%" id = "top">
   <h1 class="middle">Recursive Closures</h1>
 
- <p> This website explores some of the useful features of m-M(x) closures; i.e., closures created by statements "m = M(x)", where x can be any value, and the simplest definition of "M" is:
+ <p> This website explores some of the useful features of m-M(x) closures; i.e., closures created by statements "m = M(x)", where x can be any value, and the simplest definition of "M" is: </p>
  
   <pre>{MCode}</pre>
  <p> A modified version of M can be found at <a href="./cube">Rubik's cube example </a>, where M holds an array of function names, making it convenient for players to reverse a series of moves by repeatedly pressing the "Q" key (see <a href="./cube#reverse">function reverse</a>. Another variant of M is demonstrated at <a href="./async5">Synchronous and Asynchronous Functions Handled</a> where the line "x = func(x)" in M (above) is replaced by "x = idP(x).then(v => func(v))", idP(x),and where idP(x) returns a promise holding x.</p>
-  <p> The above definition of M is no more complex than needed to demonstrate the core features of m-M(x) closures. Unless you are sure it is unnecessary, it might be wise to include a try-catch block in the definition of M to handle values of func that are not dF3x, are not functions, or are functions that are incompatible with x. Sometimes, you might even check for functions that change x in a way that makes it incompatible with other necessary functions.  
+  <p> The above definition of M is no more complex than needed to demonstrate the core features of m-M(x) closures. Unless you are sure it is unnecessary, it might be wise to include a try-catch block in the definition of M to handle values of func that are not functions, either the function that return x in the m-M(x) closure, or functions that operate on arrays of six nine-member arrarys.  
 </p>
- 
+<p> This is a SvelteKit application, using version 5 of Svelte. To facilitate reactivity in the demonstrations, 'M' is sometimes defined as:</p>
+ <pre>{altM}</pre>
+
 <h2> Function Composition </h2>  
 <p> Instead of writing f1(f2(f3(f4(f5(x))))), which can get very messy if the five functions are verbose, you can (A) write m(f1)(f2)(f3)(f4)(f5) where m = M(x) to preserve the modified value of x in the m-M(x) closure for future transformations, for example running m(f6)(f7) at a later time, or for use of the value m(dF3x), for example, console.log("The final result is", m(dF3x)).</p>
 <p>Alternatively, M(v)(f1)(f2)(f3)(f4)(f5)(dF3x) returns the result of running five functions on some value v, leaving the temporary closure for the garbage collector to delete. This anonymous, and therefore temporary, closure returns 10 after taking the square root of ((3 cubed times 4) minus 8): <span class = "or">{v2} </span> </p>

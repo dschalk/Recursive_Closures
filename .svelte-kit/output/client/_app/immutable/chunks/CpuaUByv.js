@@ -1,0 +1,2 @@
+var i=Object.defineProperty,__name=(n,s)=>i(n,"name",{value:s,configurable:!0});import{k as n,l as s,u as t,o as u,S as o}from"./Ces5mITZ.js";function is_bound_this(i,n){return i===n||(null==i?void 0:i[o])===n}function bind_this(i={},o,r,_){return n((()=>{var n,_;return s((()=>{n=_,_=[],t((()=>{i!==r(..._)&&(o(i,..._),n&&is_bound_this(r(...n),i)&&o(null,...n))}))})),()=>{u((()=>{_&&is_bound_this(r(..._),i)&&o(null,..._)}))}})),i}__name(is_bound_this,"is_bound_this"),__name(bind_this,"bind_this");export{bind_this as b};
+//# sourceMappingURL=CpuaUByv.js.map
