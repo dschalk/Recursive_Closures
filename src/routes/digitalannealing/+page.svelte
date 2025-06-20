@@ -229,18 +229,6 @@
 </script>
 
 <h1>Traveling Salesman Problem</h1>
-<div style="display: flex; gap: 20px;">
-  <div>
-    <h2>Before</h2>
-    <canvas bind:this={beforeCanvas} width="800" height="600"></canvas>
-    <p>Total Distance: {A?.beforeDistance ? A.beforeDistance.toFixed(2) : 'N/A'}</p>
-  </div>
-  <div>
-    <h2>After</h2>
-    <canvas bind:this={afterCanvas} width="800" height="600"></canvas>
-    <p>Total Distance: {A?.afterDistance ? A.afterDistance.toFixed(2) : 'N/A'}</p>
-  </div>
-</div>
 <button on:click={() => {
   generateCities();
 }}>Generate Cities</button>
@@ -257,3 +245,15 @@
 <p>Improvement: {A?.beforeDistance && A?.afterDistance 
   ? `${(((A.beforeDistance - A.afterDistance) / A.beforeDistance) * 100).toFixed(2)}%` 
   : 'N/A'}</p>
+<div style="display: flex; gap: 20px;">
+  <div>
+    <h2>Before</h2>
+    <canvas bind:this={beforeCanvas} width="800" height="600"></canvas>
+    <p>Total Distance: {A?.beforeDistance ? A.beforeDistance.toFixed(2) : 'N/A'}</p>
+  </div>
+  <div>
+    <h2>After</h2>
+    <canvas bind:this={afterCanvas} width="800" height="600"></canvas>
+    <p>Total Distance: {A?.afterDistance ? A.afterDistance.toFixed(2) : 'N/A'}</p>
+  </div>
+</div>
